@@ -69,21 +69,33 @@ setInterval(() => {
   }
 }, 1000);
 
-function changeRoom(newRoom: string) {
+function changeRoom(newRoom: string): void {
   room = newRoom;
+
+  // Reset all variables
+  isHost = false;
+  host = "";
 }
 
-function getRoom() {
+function getRoom(): string {
   return room;
 }
 
-function setHost() {
+function setHost(): string {
+  if (room == "") return "No room set!";
+
   console.log(host);
-  if (host != "") return;
+  if (host != "") return "Host already set!";
 
   console.log("Setting host...");
 
   isHost = true;
+
+  return "Host set!";
 }
 
-export { eventEmitter, changeRoom, getRoom, setHost };
+function getIsHost(): boolean {
+  return isHost;
+}
+
+export { eventEmitter, changeRoom, getRoom, setHost, getIsHost };
